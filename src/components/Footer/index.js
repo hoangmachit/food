@@ -3,7 +3,7 @@ const Footer = () => {
   return (
     <>
       <div className="footer">
-        <div className="container p-0 d-flex">
+        <div className="p-0 d-flex">
           <div className="main-footer">
             <h1>Công ty TNHH Allgrow-labo ALLGROW Inc.</h1>
             <div className="footer-info">
@@ -64,12 +64,13 @@ const Footer = () => {
             </div>
           </div>
         </div>
+        <div className="copyright">
+          <p>
+            Copyright © 2022 ALLGROW LABO Inc. By design <strong>BE TEAM.</strong>
+          </p>
+        </div>
       </div>
-      <div className="copyright">
-        <p>
-          Copyright © 2022 ALLGROW LABO Inc. By design <strong>BE TEAM.</strong>
-        </p>
-      </div>
+
     </>
   );
 };
