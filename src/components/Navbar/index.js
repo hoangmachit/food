@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Home, Basket, People, Policy, Contact, Search } from "../Icon";
+import { Home, Basket, People, Policy } from "../Icon";
 const Navbar = () => {
   const [toggle, setToggle] = React.useState(false);
   const togglePolicy = (e) => {
@@ -10,15 +10,15 @@ const Navbar = () => {
   return (
     <>
       <section id="navPage">
-        <nav className="navbar navbar-expand-lg navbar-white bg-white p-3">
-          <a className="navbar-brand" href="/">
+        <nav className="navbar navbar-expand-lg navbar-white bg-white p-3 justify-content-between">
+          <Link className="navbar-brand" to="/" title="Home Page">
             <img
               width={200}
               height={32}
               src="https://allgrow-labo.jp/vn/images/company/logo_agLabo.svg"
               alt="Home Page"
             />
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -30,37 +30,20 @@ const Navbar = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarText">
+          <div className="collapse navbar-collapse justify-content-end" id="navbarText">
             <ul className="navbar-nav mr-auto">
-              <li className="nav-item active">
-                <Link className="nav-link" to="/" title="Home">
-                  <span className="svg">
-                    <Home />
-                  </span>
-                  Home
-                </Link>
-              </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/orders" title="Orders">
-                  <span className="svg">
-                    <Basket />
-                  </span>
                   Orders
                 </Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/account" title="Account">
-                  <span className="svg">
-                    <People />
-                  </span>
                   Account
                 </Link>
               </li>
               <li className="nav-item dropdown">
                 <Link className="nav-link dropdown-toggle" onClick={(e) => togglePolicy(e)} to="/#" title="Policy">
-                  <span className="svg">
-                    <Policy />
-                  </span>
                   Policy
                 </Link>
                 {toggle &&
@@ -72,32 +55,8 @@ const Navbar = () => {
                   </ul>)
                 }
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/contact" title="Contact">
-                  <span className="svg">
-                    <Contact />
-                  </span>
-                  Contact
-                </Link>
-              </li>
             </ul>
           </div>
-          <form className="form-inline my-2 my-lg-0 d-flex" id="form-search">
-            <input
-              className="form-control mr-sm-2"
-              type="search"
-              placeholder="Bạn muốn tìm gì ..."
-              aria-label="Bạn muốn tìm gì ..."
-            />
-            <button
-              className="btn ms-2 my-sm-0"
-              type="submit"
-            >
-              <span className="svg m-0 mr-0">
-                <Search />
-              </span>
-            </button>
-          </form>
         </nav>
       </section>
     </>

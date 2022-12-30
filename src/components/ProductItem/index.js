@@ -1,6 +1,14 @@
 import { Cart } from "../Icon";
 const ProductItem = (props) => {
-  const { product } = props;
+  const { product, openLoading, closeLoading, openToast } = props;
+  const addToCart = () => {
+    openLoading();
+    setTimeout(function () {
+      closeLoading();
+      openToast();
+    }, 1000)
+
+  }
   return (
     <article className="box-product">
       <div className="box-product__wrap">
@@ -41,7 +49,7 @@ const ProductItem = (props) => {
           <button
             className="cart-add addcart"
             data-id={product.id}
-            data-action="addnow"
+            onClick={() => addToCart()}
           >
             <Cart />
             Thêm vào giỏ hàng

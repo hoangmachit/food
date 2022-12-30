@@ -1,5 +1,4 @@
 import React from "react";
-import Breadcrumb from "../../components/Breadcrumb";
 import { WishList, Comment, Logout } from "../../components/Icon";
 const Account = () => {
     const NUMBER = [
@@ -22,10 +21,9 @@ const Account = () => {
     }
     return (
         <>
-            <Breadcrumb name="Account" />
             <section id="account-Page" className="mt-3 mb-4">
                 <div className="row">
-                    <div className="col-lg-4 col-md-4  col-sm-12">
+                    <div className="col-lg-4 col-md-4 col-sm-12">
                         <div className="">
                             <div className="card">
                                 <div className="card-header">
