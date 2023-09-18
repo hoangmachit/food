@@ -27,14 +27,14 @@ class RepositoriesServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(CustomerRepositoryInterface::class, CustomerRepository::class);
-        $this->app->bind(MediaRepositoryInterface::class, MediaRepository::class);
-        $this->app->bind(OrderStatusRepositoryInterface::class, OrderStatusRepository::class);
-        $this->app->bind(OrderItemsRepositoryInterface::class, OrderItemsRepository::class);
-        $this->app->bind(OrderStatusRepositoryInterface::class, OrderStatusRepository::class);
-        $this->app->bind(PaymentRepositoryInterface::class, PaymentRepository::class);
-        $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
-        $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
+        $this->app->singleton(CustomerRepositoryInterface::class, CustomerRepository::class);
+        $this->app->singleton(MediaRepositoryInterface::class, MediaRepository::class);
+        $this->app->singleton(OrderStatusRepositoryInterface::class, OrderStatusRepository::class);
+        $this->app->singleton(OrderItemsRepositoryInterface::class, OrderItemsRepository::class);
+        $this->app->singleton(OrderStatusRepositoryInterface::class, OrderStatusRepository::class);
+        $this->app->singleton(PaymentRepositoryInterface::class, PaymentRepository::class);
+        $this->app->singleton(ProductRepositoryInterface::class, ProductRepository::class);
+        $this->app->singleton(UserRepositoryInterface::class, UserRepository::class);
     }
 
     /**

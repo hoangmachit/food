@@ -4,10 +4,26 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MediaRequest;
+use App\Http\Resources\MediaResource;
+use App\Repositories\Media\MediaRepositoryInterface;
 use Illuminate\Support\Facades\File;
 
 class MediaController extends Controller
 {
+    /**
+     * Summary of mediaRepository
+     * @var MediaRepositoryInterface $mediaRepository
+     */
+    private $mediaRepository;
+    /**
+     * Summary of __construct
+     * @param MediaRepositoryInterface $mediaRepository
+     */
+    public function __construct(
+        MediaRepositoryInterface $mediaRepository
+    ) {
+        $this->mediaRepository = $mediaRepository;
+    }
     /**
      * Summary of upload
      * @param \App\Http\Requests\MediaRequest $request
@@ -28,7 +44,7 @@ class MediaController extends Controller
             ]);
         }
         $media = $this->mediaRepository->create([
-            'file_name' => $name,
+            'name' => $name,
             'extension' => $extension,
             'status' => 0,
         ]);
