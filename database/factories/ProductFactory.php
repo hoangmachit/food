@@ -18,7 +18,7 @@ class ProductFactory extends Factory
             'name' => Str::random(15),
             'desc' => Str::random(15),
             'price' => rand(25000, 30000),
-            'photo' => null,
+            'media_id' => null,
             'status' => 1,
             'total_buy' => rand(1, 100),
             'user_id' => 1,

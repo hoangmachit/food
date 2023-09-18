@@ -56,7 +56,6 @@ export default function Login() {
             >
                 <form
                     onSubmit={e => handleLogin(e)}
-                    role="form"
                     method="POST"
                     style={{
                         width: "400px",

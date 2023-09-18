@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Admin\ProductController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\MediaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,13 +17,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('auth')->as('auth')->controller(AuthController::class)->group(function () {
+Route::prefix('auth')->controller(AuthController::class)->group(function () {
     Route::post('login', 'login');
+});
+Route::prefix('media')->controller(MediaController::class)->group(function () {
+    Route::post('upload', 'upload');
 });
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::middleware(['auth:sanctum'])->prefix('admin')->as('admin')->group(function () {
+Route::middleware(['auth:sanctum'])->prefix('admin')->group(function () {
     Route::prefix('product')->as('product')->controller(ProductController::class)->group(function () {
         Route::get('', 'index');
         Route::get('{productId}', 'detail');
