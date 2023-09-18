@@ -6,7 +6,7 @@ export default function AdminProduct() {
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         const getData = async () => {
-            await api.get('/admin/product').then(function (response) {
+            await api.get(`/api/admin/product`).then(function (response) {
                 const { data, status } = response;
                 if (status === 200) {
                     setProducts(data.products);

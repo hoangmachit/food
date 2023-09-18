@@ -1,7 +1,9 @@
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AdminLayout from './layouts/AdminLayout';
 import DefaultLayout from './layouts/DefaultLayout';
 import Home from "./pages/Home";
+import Login from "./pages/Login";
 import AdminHome from "./pages/Admin/Home";
 import AdminProduct from "./pages/Admin/Product";
 import AdminOrder from "./pages/Admin/Order";
@@ -15,6 +17,7 @@ function App() {
                 <Route path="/" element={<DefaultLayout />}>
                     <Route index element={<Home />} />
                 </Route>
+                <Route path="/login" element={<Login />} />
                 <Route path="/admin" element={<AdminLayout />}>
                     <Route index element={<AdminHome />} />
                     <Route path="/admin/order" element={<AdminOrder />} />
