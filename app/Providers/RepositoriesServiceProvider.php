@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\Config\ConfigRepository;
+use App\Repositories\Config\ConfigRepositoryInterface;
 use App\Repositories\Customer\CustomerRepository;
 use App\Repositories\Customer\CustomerRepositoryInterface;
 use App\Repositories\Media\MediaRepository;
@@ -27,6 +29,7 @@ class RepositoriesServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->singleton(ConfigRepositoryInterface::class, ConfigRepository::class);
         $this->app->singleton(CustomerRepositoryInterface::class, CustomerRepository::class);
         $this->app->singleton(MediaRepositoryInterface::class, MediaRepository::class);
         $this->app->singleton(OrderStatusRepositoryInterface::class, OrderStatusRepository::class);

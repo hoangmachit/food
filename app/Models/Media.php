@@ -13,4 +13,9 @@ class Media extends Model
      * @var array
      */
     protected $fillable = ['name', 'extension', 'status'];
+
+    public function getPathAttribute()
+    {
+        return asset('uploads' . DIRECTORY_SEPARATOR . $this->name);
+    }
 }

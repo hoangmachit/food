@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class ProductRequest extends FormRequest
+class ConfigRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,32 +24,16 @@ class ProductRequest extends FormRequest
      */
     public function rules()
     {
+        $config = $this->route('configId');
         return [
             'name' => [
                 'required',
                 'string',
-                'min:3',
-                'max:255',
+                Rule::unique('configs', 'name')->ignore($config),
             ],
-            'desc' => [
+            'value' => [
                 'required',
                 'string',
-                'min:3',
-                'max:255',
-            ],
-            'price' => [
-                'required',
-                'integer',
-                'min:3',
-                'max:999999',
-            ],
-            'media_id' => [
-                'nullable',
-                'integer',
-            ],
-            'status' => [
-                'required',
-                'boolean',
             ],
         ];
     }

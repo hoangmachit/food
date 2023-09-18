@@ -25,10 +25,9 @@ export default function AdminProduct() {
             <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 className="h3">Product</h1>
             </div>
-            <h4>Danh sách sản phẩm</h4>
             <div className="table-responsive">
                 {loading ? (
-                    <h1>Fetching</h1>
+                    <h1 className="h4">Fetching</h1>
                 ) : (
                     <table className="table table-hover">
                         <thead>
@@ -45,7 +44,7 @@ export default function AdminProduct() {
                         <tbody>
                             {products.map((product) => {
                                 return <tr key={product.id}>
-                                    <th scope="row">{product.id}</th>
+                                    <td scope="row">{product.id}</td>
                                     <td>{product.name}</td>
                                     <td>{product.photo}</td>
                                     <td>{product.price}</td>

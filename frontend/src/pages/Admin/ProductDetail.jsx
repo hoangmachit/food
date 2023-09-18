@@ -7,7 +7,7 @@ export default function AdminProductDetail() {
     const [product, setProduct] = useState({});
     const [loading, setLoading] = useState(true);
     const [errors, setErrors] = useState({});
-    const [file, setFile] = useState();
+    const [media, setMedia] = useState({});
     const [message, setMessage] = useState({
         status: false,
         message: ""
@@ -20,6 +20,7 @@ export default function AdminProductDetail() {
                     const { data, status } = response;
                     if (status === 200) {
                         setProduct(data.product);
+                        setMedia(data.product.media);
                     }
                 })
                 .catch(function(error) {
@@ -33,7 +34,7 @@ export default function AdminProductDetail() {
     }, []);
     const handleProduct = (e, type) => {
         const newProduct = { ...product };
-        newProduct[type] = e.target.value;
+        newProduct[type] = type == "media_id" ? e : e.target.value;
         setProduct(newProduct);
     };
     const updateProduct = async e => {
@@ -56,8 +57,23 @@ export default function AdminProductDetail() {
                 setLoading(false);
             });
     };
-    const handleFile = e => {
-        setFile(e.target.files[0]);
+    const handleFile = async e => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append("file", e.target.files[0]);
+        await api
+            .post(`/api/media/upload`, formData)
+            .then(response => {
+                const { data } = response;
+                if (data.success) {
+                    handleProduct(data.media.id, "media_id");
+                    setMedia(data.media);
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            })
+            .finally(() => {});
     };
     return (
         <>
@@ -72,7 +88,7 @@ export default function AdminProductDetail() {
                     <p className="m-0">{message.message}</p>
                 </div>
             )}
-            <div>
+            <div className="mb-4">
                 {loading ? (
                     <h4 className="h4">Fetching</h4>
                 ) : (
@@ -91,6 +107,7 @@ export default function AdminProductDetail() {
                                 className={`form-control ${
                                     errors && errors.name ? "is-invalid" : ""
                                 }`}
+                                autoComplete="off"
                                 id="name"
                                 onChange={e => handleProduct(e, "name")}
                                 value={product.name}
@@ -109,6 +126,7 @@ export default function AdminProductDetail() {
                                 className={`form-control ${
                                     errors && errors.desc ? "is-invalid" : ""
                                 }`}
+                                autoComplete="off"
                                 placeholder=""
                                 onChange={e => handleProduct(e, "desc")}
                                 id="desc"
@@ -131,6 +149,18 @@ export default function AdminProductDetail() {
                                 id="file"
                                 onChange={e => handleFile(e)}
                             />
+                            {media && (
+                                <div className="mt-3">
+                                    <img
+                                        style={{
+                                            maxWidth: "200px",
+                                            height: "auto"
+                                        }}
+                                        src={media.path}
+                                        alt={media.name}
+                                    />
+                                </div>
+                            )}
                         </div>
                         <div className="mb-3">
                             <label htmlFor="price" className="form-label">

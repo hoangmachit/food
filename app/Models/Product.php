@@ -21,4 +21,21 @@ class Product extends Model
         'total_buy',
         'user_id',
     ];
+
+    /**
+     * Summary of media
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function media()
+    {
+        return $this->belongsTo(Media::class);
+    }
+    /**
+     * Summary of user
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

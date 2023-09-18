@@ -1,5 +1,11 @@
 import React from "react";
-import { Outlet, Navigate, Link, useNavigate } from "react-router-dom";
+import {
+    Outlet,
+    Navigate,
+    Link,
+    useNavigate,
+    useLocation
+} from "react-router-dom";
 import "./admin.css";
 export default function AdminLayout() {
     const userAuthenticated = localStorage.getItem("accessToken") !== null;
@@ -7,6 +13,7 @@ export default function AdminLayout() {
         return <Navigate to="/login" />;
     }
     const navigate = useNavigate();
+    const location = useLocation();
     const handleLogout = async () => {
         localStorage.removeItem("accessToken");
         navigate(`/login`);
@@ -58,7 +65,11 @@ export default function AdminLayout() {
                             <ul className="nav flex-column">
                                 <li className="nav-item">
                                     <Link
-                                        className="nav-link active"
+                                        className={`nav-link ${
+                                            location.pathname === "/admin"
+                                                ? "active"
+                                                : ""
+                                        }`}
                                         aria-current="page"
                                         to={`/admin`}
                                     >
@@ -68,7 +79,13 @@ export default function AdminLayout() {
                                 </li>
                                 <li className="nav-item">
                                     <Link
-                                        className="nav-link"
+                                        className={`nav-link ${
+                                            location.pathname.includes(
+                                                "/admin/order"
+                                            )
+                                                ? "active"
+                                                : ""
+                                        }`}
                                         to={`/admin/order`}
                                     >
                                         <span data-feather="file"></span>
@@ -77,7 +94,13 @@ export default function AdminLayout() {
                                 </li>
                                 <li className="nav-item">
                                     <Link
-                                        className="nav-link"
+                                        className={`nav-link ${
+                                            location.pathname.includes(
+                                                "/admin/product"
+                                            )
+                                                ? "active"
+                                                : ""
+                                        }`}
                                         to={`/admin/product`}
                                     >
                                         <span data-feather="shopping-cart"></span>
@@ -86,7 +109,13 @@ export default function AdminLayout() {
                                 </li>
                                 <li className="nav-item">
                                     <Link
-                                        className="nav-link"
+                                        className={`nav-link ${
+                                            location.pathname.includes(
+                                                "/admin/customer"
+                                            )
+                                                ? "active"
+                                                : ""
+                                        }`}
                                         to={`/admin/customer`}
                                     >
                                         <span data-feather="users"></span>
@@ -107,7 +136,13 @@ export default function AdminLayout() {
                             <ul className="nav flex-column mb-2">
                                 <li className="nav-item">
                                     <Link
-                                        className="nav-link"
+                                        className={`nav-link ${
+                                            location.pathname.includes(
+                                                "/admin/config"
+                                            )
+                                                ? "active"
+                                                : ""
+                                        }`}
                                         to={`/admin/config`}
                                     >
                                         <span data-feather="file-text"></span>

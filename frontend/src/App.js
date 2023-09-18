@@ -10,6 +10,7 @@ import AdminOrder from "./pages/Admin/Order";
 import AdminConfig from "./pages/Admin/Config";
 import AdminCustomer from "./pages/Admin/Customer";
 import AdminProductDetail from "./pages/Admin/ProductDetail";
+import AdminCustomerDetail from "./pages/Admin/CustomerDetail";
 function App() {
     return (
         <BrowserRouter>
@@ -24,6 +25,7 @@ function App() {
                     <Route path="/admin/product" element={<AdminProduct />} />
                     <Route path="/admin/product/:productId" element={<AdminProductDetail />} />
                     <Route path="/admin/customer" element={<AdminCustomer />} />
+                    <Route path="/admin/customer/:customerId" element={<AdminCustomerDetail />} />
                     <Route path="/admin/config" element={<AdminConfig />} />
                 </Route>
             </Routes>
